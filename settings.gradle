@@ -1,1 +1,1 @@
-include ':demo'
+include ':primary-level', ':middle-level', ':high-level'

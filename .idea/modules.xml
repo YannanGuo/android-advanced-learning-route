@@ -3,7 +3,9 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/android-advanced-learning-route.iml" filepath="$PROJECT_DIR$/android-advanced-learning-route.iml" />
-      <module fileurl="file://$PROJECT_DIR$/demo/demo.iml" filepath="$PROJECT_DIR$/demo/demo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/high-level/high-level.iml" filepath="$PROJECT_DIR$/high-level/high-level.iml" />
+      <module fileurl="file://$PROJECT_DIR$/middle-level/middle-level.iml" filepath="$PROJECT_DIR$/middle-level/middle-level.iml" />
+      <module fileurl="file://$PROJECT_DIR$/primary-level/primary-level.iml" filepath="$PROJECT_DIR$/primary-level/primary-level.iml" />
     </modules>
   </component>
 </project>

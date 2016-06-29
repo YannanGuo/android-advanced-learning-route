@@ -102,6 +102,20 @@ SQLite3性能分析
 
 ###1.2.2 中级内容
 
+[Android四大组件工作流程与原理分析]()
+
+[View工作原理与事件体系]()
+
+[Window工作流程与原理分析]()
+
+[Android动画工作流程与原理分析]()
+
+[Android线程与线程池原理分析]()
+
+[Android跨进程通信原理分析]()
+
+[Android性能优化技巧]()
+
 AIDL：熟悉AIDL，理解其工作原理，懂transact和onTransact的区别；
 Binder：从Java层大概理解Binder的工作原理，懂Parcel对象的使用；
 多进程：熟练掌握多进程的运行机制，懂Messenger、Socket等；
