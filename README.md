@@ -26,42 +26,34 @@
 ##1.2 Android
 
 ###1.2.1 基础内容
-1)、Android开发环境搭建：Android介绍，Android开发环境搭建，第一个Android应用程序，Android应用程序目录结构。
 
-2)、Android初级控件的使用：
+####1 Android基础控件
 
-TextView控件的使用
-Button控件的使用方法
-EditText控件的使用方法
-ImageView的使用方法
-RadioButton的使用方法
-Checkbox的使用方法
-Menu的使用方法
+ViewGroup及其子类
 
-3)、Android高级控件的使用：
+TextView及其子类
 
-ListView的使用方法
-GridView的使用方法
-Adapter的使用方法
-Spinner的使用方法
-Gallary的使用方法
-ScrollView的使用方法
+ImageView及其子类
+
+Dialog及其子类
+
+Menu及其子类
+
+Progressbar及其子类
+
+AdapterView及其子类
+
+####2 Android高级控件
+
+ScrollView
 RecyclerView
 
-4、对话框与菜单的使用：
+####3 Android自定义控件
 
-Dialog的基本概念
-BlockquoteAlertDialog的使用方法
-DatePickerDialog的使用方法
-Menu的使用方法
-自定义Menu的实现方法
 
-5.控件的布局方法：
+####4 Android四大组件
 
-线性布局的使用方法
-相对布局的使用方法
-
-6.多Acitivity管理：
+Activity
 
 AndroidManifest.xml文件的作用
 Intent的使用方法
@@ -70,16 +62,13 @@ Intent的使用方法
 IntentFilter的使用方法
 Activity Group的使用方法
 
-7、自定义控件实现方法：
+Fragment
 
-自定义ListView的实现方法
-可折叠ListView的使用方法
-自定义Adapter的实现方法
-自定义View的实现方法
-动态控件布局的上实现方法
-上拉刷新下拉加载更多
+ContentProvider
 
-3、android网络编程与数据存储
+BroadcastReceiver
+
+####5 Android网络编程与数据存储
 
 1).基于Android平台的HTTP通讯：
 
@@ -116,15 +105,6 @@ SQLite3性能分析
 
 [Android性能优化技巧]()
 
-AIDL：熟悉AIDL，理解其工作原理，懂transact和onTransact的区别；
-Binder：从Java层大概理解Binder的工作原理，懂Parcel对象的使用；
-多进程：熟练掌握多进程的运行机制，懂Messenger、Socket等；
-事件分发：弹性滑动、滑动冲突等；
-玩转View：View的绘制原理、各种自定义View；
-动画系列：熟悉View动画和属性动画的不同点，懂属性动画的工作原理；
-懂性能优化、熟悉mat等工具
-懂点常见的设计模式
-
 ###1.2.3 高级内容
 
 继续加深理解”稍微深入的知识点“中所定义的内容
@@ -150,9 +130,9 @@ AsyncTask在不同版本上的表现细节
 
 博客数量：每周两篇
 
-博客平台：[个人博客](https://guoxiaoxing.github.io/)
-          [简书博客](http://www.jianshu.com/users/66a47e04215b/latest_articles)
-          [CSDN博客](http://blog.csdn.net/allenwells)
+博客平台：[个人博客](https://guoxiaoxing.github.io/)  
+         [简书博客](http://www.jianshu.com/users/66a47e04215b/latest_articles)  
+         [CSDN博客](http://blog.csdn.net/allenwells)
           
 #三 项目演练
 
