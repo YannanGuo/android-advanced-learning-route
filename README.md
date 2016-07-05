@@ -48,8 +48,6 @@ AdapterView及其子类
 ScrollView
 RecyclerView
 
-####3 Android自定义控件
-
 
 ####4 Android四大组件
 
