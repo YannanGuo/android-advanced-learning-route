@@ -1,5 +1,10 @@
 #自定义View的方法与技巧
 
+作者: 郭嘉
+邮箱: guoxiaoxingv@163.com
+博客: https://guoxiaoxing.github.io
+网址: https://github.com/guoxiaoxing
+
 痛哟前面几篇文章, 我们对View的工作原理与事件体系有了相应的理解, 这是自定义View的基础。下面我们就结合实例具体的阐述一下如何进行
 View的自定义
 
