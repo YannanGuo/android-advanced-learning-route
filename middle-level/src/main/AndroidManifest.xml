@@ -2,6 +2,8 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
           package="com.guoxiaoxing.middle">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -16,6 +18,8 @@
             </intent-filter>
         </activity>
         <activity android:name=".customview.CustomActivity">
+        </activity>
+        <activity android:name=".webview.WebViewActivity">
         </activity>
     </application>
 
