@@ -1,10 +1,11 @@
 package com.guoxiaoxing.middle.webview;
 
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
-import android.view.Window;
 import android.webkit.WebChromeClient;
 import android.webkit.WebResourceRequest;
 import android.webkit.WebSettings;
@@ -48,9 +49,11 @@ public class WebViewActivity extends AppCompatActivity {
 
         WebSettings webSettings = mWebView.getSettings();
         webSettings.setJavaScriptEnabled(true);
-        mWebView.setWebViewClient(new CustomWebViewClient());
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);
 
-        mWebView.setWebChromeClient(new WebChromeClient(){
+        mWebView.setWebViewClient(new WebViewClient());
+
+        mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
             public void onProgressChanged(WebView view, int newProgress) {
                 setProgress(newProgress);
@@ -63,19 +66,33 @@ public class WebViewActivity extends AppCompatActivity {
 
         // Simplest usage: note that an exception will NOT be thrown
         // if there is an error loading this page (see below).
-        mWebView.loadUrl("http://slashdot.org/");
+        mWebView.loadUrl("https://github.com/guoxiaoxing/android-advanced-learning-route");
     }
 
     static class CustomWebViewClient extends WebViewClient {
+
+        private Context mContext;
+
+        public CustomWebViewClient(Context context) {
+            mContext = context;
+        }
+
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-            view.loadUrl(request.getUrl().toString());
+            view.loadUrl(request.toString());
             return true;
         }
 
         @Override
         public boolean shouldOverrideUrlLoading(WebView view, String url) {
-            return super.shouldOverrideUrlLoading(view, url);
+            if (Uri.parse(url).getHost().equals("github.com/guoxiaoxing")) {
+                //如果是自己站点的链接, 则用本地WebView跳转
+                return false;
+            }
+            //如果不是自己的站点则launch别的Activity来处理
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+            mContext.startActivity(intent);
+            return true;
         }
     }
 }
