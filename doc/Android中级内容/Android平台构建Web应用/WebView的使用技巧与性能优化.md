@@ -4,13 +4,13 @@ WebView也是Android View的一种, 我们通常用它来在应用内部展示�
 
 添加网络权限
 
-```
+```xml
 <uses-permission android:name="android.permission.INTERNET" />
 ```
 
 在布局中添加WebView
 
-```
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <WebView  xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/webview"
@@ -36,13 +36,13 @@ JavaScript代码和Android代码是通过addJavascriptInterface()来建立连接
 
 1 设置WebView支持JavaScript
 
-```
+```java
 webView.getSettings().setJavaScriptEnabled(true);
 ```
 
 2 在Android工程里定义一个接口
 
-```
+```java
 public class WebAppInterface {
     Context mContext;
 
@@ -63,7 +63,7 @@ public class WebAppInterface {
 
 3 在Android代码中将该接口添加到WebView
 
-```
+```java
 WebView webView = (WebView) findViewById(R.id.webview);
 webView.addJavascriptInterface(new WebAppInterface(this), "Android");
 ```
@@ -72,7 +72,7 @@ webView.addJavascriptInterface(new WebAppInterface(this), "Android");
 
 4 在JavaScript中调用Android方法
 
-```
+```js
 <input type="button" value="Say hello" onClick="showAndroidToast('Hello Android!')" />
 
 <script type="text/javascript">
@@ -97,7 +97,7 @@ webView.addJavascriptInterface(new WebAppInterface(this), "Android");
 
 如果我们想控制不同链接的跳转方式, 我们需要继承WebViewClient重写shouldOverrideUrlLoading()方法
 
-```
+```java
     static class CustomWebViewClient extends WebViewClient {
 
         private Context mContext;
@@ -128,7 +128,7 @@ webView.addJavascriptInterface(new WebAppInterface(this), "Android");
 
 由于默认放回false, 如果我们只想在WebView内处理链接跳转只需要设置mWebView.setWebViewClient(new WebViewClient())即可
 
-```
+```java
 /** 
      * Give the host application a chance to take over the control when a new 
      * url is about to be loaded in the current WebView. If WebViewClient is not 
@@ -170,7 +170,7 @@ http://stackoverflow.com/questions/26651586/difference-between-shouldoverrideurl
 
 Android的返回键, 如果想要实现WebView内网页的回退, 可以重写onKeyEvent()方法。
 
-```
+```java
 @Override
 public boolean onKeyDown(int keyCode, KeyEvent event) {
     // Check if the key event was the Back button and if there's history
@@ -190,7 +190,7 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
 
 控制缓存行为
 
-```
+```java
 WebSettings webSettings = mWebView.getSettings();
 //优先使用缓存
 webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK); 
@@ -202,7 +202,7 @@ WwebSettings.setCacheMode(WebSettings.LOAD_NO_CACHE);
 
 清除缓存
 
-```
+```java
 mWebView.clearCache(true);
 mWebView.clearHistory();
 ```
@@ -211,7 +211,7 @@ mWebView.clearHistory();
 
 添加Cookies
 
-```
+```java
 public void synCookies() {
     if (!CacheUtils.isLogin(this)) return;
     CookieSyncManager.createInstance(this);
@@ -227,6 +227,6 @@ public void synCookies() {
 
 清除Cookies
 
-```
+```java
 CookieManager.getInstance().removeSessionCookie();
 ```
