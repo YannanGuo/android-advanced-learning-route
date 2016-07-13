@@ -2,16 +2,14 @@
 
 学习目标：  
 
-1. 深入Java  
-2. 深入Android系统  
-4. 深入Linux内核  
-4. 了解编译原理等CS基本知识  
+1. 深入理解Android Framework框架原理
+2. 深入理解Android系统原理
 
 #一 技术图谱
 
-###1.1 基础内容
+##1.1 基础内容
 
-####1 Android基础控件
+###1 Android基础控件
 
 ViewGroup及其子类
 
@@ -27,13 +25,13 @@ Progressbar及其子类
 
 AdapterView及其子类
 
-####2 Android高级控件
+###2 Android高级控件
 
 ScrollView
 RecyclerView
 
 
-####4 Android四大组件
+###4 Android四大组件
 
 Activity
 
@@ -50,7 +48,7 @@ ContentProvider
 
 BroadcastReceiver
 
-####5 Android网络编程与数据存储
+###5 Android网络编程与数据存储
 
 1 基于Android平台的HTTP通讯
 
@@ -71,23 +69,23 @@ SQLite3性能分析
 访问SDCard的方法
 访问SharedPreferences的方法
 
-###1.2 中级内容
+##1.2 中级内容
 
-[Android四大组件工作流程与原理分析]()
+###1.2.1 [Android四大组件工作流程与原理分析]()
 
-[View工作原理与事件体系]()
+###1.2.2 [View工作原理与事件体系]()
 
-[Window工作流程与原理分析]()
+###1.2.3 [Window工作流程与原理分析]()
 
-[Android动画工作流程与原理分析]()
+###1.2.4 [Android动画工作流程与原理分析]()
 
-[Android消息机制原理分析]()
+###1.2.5 [Android消息机制原理分析]()
 
-[Android线程与线程池原理分析]()
+###1.2.6 [Android线程与线程池原理分析]()
 
-[Android跨进程通信原理分析]()
+###1.2.7 [Android跨进程通信原理分析]()
 
-[Android性能优化技巧]()
+###1.2.8 [Android性能优化技巧]()
 
 ###1.3 高级内容
 
@@ -98,14 +96,13 @@ SQLite3性能分析
 了解AMS和PMS的工作原理
 能够回答问题”一个应用存在多少个Window？“
 了解四大组件的大概工作流程
-…
+
 基本知识点的细节
 Activity的启动模式以及异常情况下不同Activity的表现
 Service的onBind和onReBind的关联
 onServiceDisconnected(ComponentName className)和binderDied()的区别
 AsyncTask在不同版本上的表现细节
 线程池的细节和参数配置
-…
 熟悉设计模式，有架构意识学习方法
 
 #二 博客写作
