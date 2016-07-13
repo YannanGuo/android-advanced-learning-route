@@ -1,9 +1,6 @@
 package com.guoxiaoxing.middle.webview;
 
 import android.content.Context;
-import android.content.Intent;
-import android.net.Uri;
-import android.webkit.WebResourceRequest;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
@@ -22,21 +19,35 @@ public class CustomWebViewClient extends WebViewClient {
         mContext = context;
     }
 
-    @Override
-    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
-        view.loadUrl(request.toString());
-        return true;
-    }
+//    @Override
+//    public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+//        view.loadUrl(request.toString());
+//        return true;
+//    }
 
     @Override
     public boolean shouldOverrideUrlLoading(WebView view, String url) {
-        if (Uri.parse(url).getHost().equals("github.com/guoxiaoxing")) {
-            //如果是自己站点的链接, 则用本地WebView跳转
-            return false;
-        }
-        //如果不是自己的站点则launch别的Activity来处理
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
-        mContext.startActivity(intent);
-        return true;
+//        if (Uri.parse(url).getHost().equals("github.com/guoxiaoxing")) {
+//            //如果是自己站点的链接, 则用本地WebView跳转
+//            return false;
+//        }
+//        //如果不是自己的站点则launch别的Activity来处理
+//        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse(url));
+//        mContext.startActivity(intent);
+//        return true;
+        return false;
     }
-}  
+
+    @Override
+    public void onPageFinished(WebView view, String url) {
+        super.onPageFinished(view, url);
+        if (!view.getSettings().getLoadsImagesAutomatically()) {
+            view.getSettings().setLoadsImagesAutomatically(true);
+        }
+    }
+
+    @Override
+    public void onScaleChanged(WebView view, float oldScale, float newScale) {
+        super.onScaleChanged(view, oldScale, newScale);
+    }
+}

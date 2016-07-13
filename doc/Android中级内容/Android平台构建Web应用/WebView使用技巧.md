@@ -34,7 +34,7 @@ myWebView.loadUrl("http://www.example.com");
 
 以上就是WebView的简单用法, 相比大家已经十分熟悉, 下面我们就来逐一看看WebView的其他特性。
 
-#一 JavaScript代码和Android代码的相互调用
+#一 WebView代码调用
 
 ##1.1 JavaSript代码调用Android代码
 
@@ -90,7 +90,7 @@ webView.addJavascriptInterface(new WebAppInterface(this), "Android");
 
 在JavaScript中我们不用再去实例化WebAppInterface接口, WebView会自动帮我们完成这一工作, 使它能够为WebPage所用。
 
-#二 WebView的导航问题
+#二 WebView页面导航
 
 ##2.1 页面跳转
 
@@ -189,6 +189,11 @@ public boolean onKeyDown(int keyCode, KeyEvent event) {
     return super.onKeyDown(keyCode, event);
 }
 ```
+
+##2.3 页面滑动
+
+
+
 #三 WebView缓存实现
 
 在项目中如果使用到WebView控件, 当加载html页面时, 会在/data/data/包名目录下生成database与cache两个文件夹。

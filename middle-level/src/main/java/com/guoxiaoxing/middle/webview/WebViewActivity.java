@@ -1,6 +1,7 @@
 package com.guoxiaoxing.middle.webview;
 
 import android.content.Context;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
@@ -41,15 +42,25 @@ public class WebViewActivity extends AppCompatActivity {
     private void setupView() {
         setupWebView();
         mWebView.addJavascriptInterface(new WebViewInterface(mContext), "Android");
-        mWebView.loadUrl("https://github.com/guoxiaoxing/android-advanced-learning-route");
+        mWebView.loadUrl(Urls.MUTIL_IMAGE);
     }
 
     private void setupWebView() {
         WebSettings webSettings = mWebView.getSettings();
-        webSettings.setJavaScriptEnabled(true);
-        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ONLY);
 
-        mWebView.setWebViewClient(new WebViewClient());
+        //JS调用
+        webSettings.setJavaScriptEnabled(true);
+        //缓存行为
+        webSettings.setCacheMode(WebSettings.LOAD_CACHE_ELSE_NETWORK);
+        //图片加载
+        if(Build.VERSION.SDK_INT >= 19){
+            webSettings.setLoadsImagesAutomatically(true);
+        }else {
+            webSettings.setLoadsImagesAutomatically(false);
+        }
+
+
+        mWebView.setWebViewClient(new CustomWebViewClient(mContext));
 
         mWebView.setWebChromeClient(new WebChromeClient() {
             @Override
