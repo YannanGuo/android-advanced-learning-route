@@ -5,6 +5,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.KeyEvent;
+import android.view.View;
 import android.webkit.WebChromeClient;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
@@ -69,5 +70,10 @@ public class WebViewActivity extends AppCompatActivity {
                 super.onProgressChanged(view, newProgress);
             }
         });
+
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB){
+            mWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+        }
+
     }
 }

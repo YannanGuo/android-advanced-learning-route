@@ -90,6 +90,10 @@ webView.addJavascriptInterface(new WebAppInterface(this), "Android");
 
 在JavaScript中我们不用再去实例化WebAppInterface接口, WebView会自动帮我们完成这一工作, 使它能够为WebPage所用。
 
+**注意**:
+由于addJavascriptInterface()给予了JS代码控制应用的能力, 这是一项非常有用的特性, 但同时也带来了安全上的隐患, 解决方案是用开源方案
+[pedant/safe-java-js-webview-bridge](https://github.com/pedant/safe-java-js-webview-bridge)来实现代码交互。
+
 #二 WebView页面导航
 
 ##2.1 页面跳转
@@ -241,3 +245,45 @@ public void synCookies() {
 ```java
 CookieManager.getInstance().removeSessionCookie();
 ```
+
+#四 WebView本地资源访问
+
+当我们在WebView中加载出从web服务器上拿取的内容时，是无法访问本地资源的，如assets目录下的图片资源，因为这样的行为属于跨域行为（Cross-Domain），而WebView是禁止
+的。解决这个问题的方案是把html内容先下载到本地，然后使用loadDataWithBaseURL加载html。这样就可以在html中使用 file:///android_asset/xxx.png 的链接来引用包里
+面assets下的资源了。
+
+```java
+private void loadWithAccessLocal(final String htmlUrl) {
+    new Thread(new Runnable() {
+        public void run() {
+            try {
+                final String htmlStr = NetService.fetchHtml(htmlUrl);
+                if (htmlStr != null) {
+                    TaskExecutor.runTaskOnUiThread(new Runnable() {
+                        @Override
+                        public void run() {
+                            loadDataWithBaseURL(htmlUrl, htmlStr, "text/html", "UTF-8", "");
+                        }
+                    });
+                    return;
+                }
+            } catch (Exception e) {
+                Log.e("Exception:" + e.getMessage());
+            }
+
+            TaskExecutor.runTaskOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    onPageLoadedError(-1, "fetch html failed");
+                }
+            });
+        }
+    }).start();
+}
+```
+
+**注意**
+
+- 从网络上下载html的过程应放在工作线程中
+- html下载成功后渲染出html的步骤应放在UI主线程，不然WebView会报错
+- html下载失败则可以使用我们前面讲述的方法来显示自定义错误界面

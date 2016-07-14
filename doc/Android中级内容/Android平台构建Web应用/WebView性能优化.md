@@ -32,3 +32,24 @@ public void onPageFinished(WebView view, String url) {
 ```
 
 **注意**: 4.4以上系统在onPageFinished时再恢复图片加载时,如果存在多张图片引用的是相同的src时，会只有一个image标签得到加载，因而对于这样的系统我们就先直接加载。
+
+#二 硬件加速页面闪烁问题
+
+4.0以上的系统我们开启硬件加速后，WebView渲染页面更加快速，拖动也更加顺滑。但有个副作用就是，当WebView视图被整体遮住一块，然后突然恢复时（比如使用SlideMenu将WebView从侧边
+滑出来时），这个过渡期会出现白块同时界面闪烁。解决这个问题的方法是在过渡期前将WebView的硬件加速临时关闭，过渡期后再开启，如下所示:
+
+过度前关闭硬件加速
+
+```java
+if(Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB){
+    mWebView.setLayerType(View.LAYER_TYPE_SOFTWARE, null);
+}
+```
+
+过度前开启硬件加速
+
+```java
+if(Build.VERSION.SDK_INT > Build.VERSION_CODES.HONEYCOMB){
+    mWebView.setLayerType(View.LAYER_TYPE_HARDWARE, null);
+}
+```
