@@ -23,7 +23,6 @@
 
 [Progressbar及其子类基础使用]()
 
-
 ###1.1.2 Android四大组件
 
 [Activity基础使用]()
@@ -61,7 +60,6 @@
 ###1.2.7 Android跨进程通信原理分析
 
 ###1.2.8 Android平台构建Web应用
-
 
 ###1.2.9 Android性能优化实践
 
