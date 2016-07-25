@@ -1,0 +1,19 @@
+#文章设计
+
+作者:
+邮箱: guoxiaoxingv@163.com
+博客: https://guoxiaoxing.github.io/
+知乎: 
+
+**关于作者**
+
+![](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/image/avatar.jpeg)
+
+>Android Coder一枚, 目前就职于杭州大搜车汽车汽车服务有限公司。爱技术、爱烹饪、爱小提琴、爱一切新鲜有趣的事物。人生格言: 不想当
+程序员的歌手不是好厨师。
+
+**关于文章**
+
+>作者的每一篇文章都会同时发布在Github、CSDN和知乎上, 文章顶部也会附上文章的源链接和代码链接。如果文章中有什么疑问欢迎发邮件与
+我交流, 对于交流的问题, 请描述清楚并附上代码与日志, 我一般都会给予回复。如果文章中有什么错误, 也欢迎斧正。如果你觉得本文章对你
+有所帮助, 也欢迎去[我的Github](https://github.com/guoxiaoxing) star文章, 关注文章的最新的动态。
