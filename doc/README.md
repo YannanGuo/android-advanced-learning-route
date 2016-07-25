@@ -1,9 +1,9 @@
 #文章设计
 
-作者:
-邮箱: guoxiaoxingv@163.com
-博客: https://guoxiaoxing.github.io/
-知乎: 
+作者:  
+邮箱: guoxiaoxingv@163.com  
+博客: https://guoxiaoxing.github.io/  
+知乎:   
 
 **关于作者**
 
