@@ -1,9 +1,9 @@
 #文章设计
 
-作者:  
+作者: 郭嘉
 邮箱: guoxiaoxingv@163.com  
 博客: https://guoxiaoxing.github.io/  
-知乎:   
+知乎: https://www.zhihu.com/people/allen-wells
 
 **关于作者**
 
