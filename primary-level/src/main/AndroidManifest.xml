@@ -15,6 +15,30 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".activity.lifecycle.LifecycleFragmentActivity"
+            android:label="@string/app_name_compat"
+            android:taskAffinity="com.scvngr.levelup.lifecycle.compat">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name=".activity.lifecycle.LifecycleActivity"
+            android:label="@string/app_name"
+            android:taskAffinity="com.scvngr.levelup.lifecycle.native">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+
+
     </application>
 
 </manifest>
