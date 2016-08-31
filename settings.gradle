@@ -1,1 +1,1 @@
-include ':primary-level', ':middle-level', ':high-level'
+include ':android-framework-theory', ':android-system-theory'
