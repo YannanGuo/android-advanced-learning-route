@@ -31,6 +31,8 @@ Android应用架构: https://github.com/YannanGuo/android-app-architecture
 
 Android网络编程: https://github.com/YannanGuo/android-network-programming
 
+Android异步编程: https://github.com/YannanGuo/android-asynchronous-programming
+
 Android崩溃处理: https://github.com/YannanGuo/android-app-crash-handler
 
 Android混合编程: https://github.com/YannanGuo/android-hybird-app
