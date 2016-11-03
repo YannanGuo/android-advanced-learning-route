@@ -8,8 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/android-framework-theory" />
-            <option value="$PROJECT_DIR$/android-system-theory" />
+            <option value="$PROJECT_DIR$/android-framework" />
+            <option value="$PROJECT_DIR$/android-new-feature" />
+            <option value="$PROJECT_DIR$/android-system" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />
