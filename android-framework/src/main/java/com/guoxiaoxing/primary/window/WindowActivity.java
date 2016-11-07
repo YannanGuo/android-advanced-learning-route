@@ -26,7 +26,7 @@ public class WindowActivity extends BaseActivity implements CompoundButton.OnChe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_window);
+        setContentView(R.layout.window_activity_window);
         initAllViews();
         bindService();
         startService(serviceIntent);

@@ -35,7 +35,7 @@ public class LifecycleFragmentActivity extends FragmentActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         recLifeCycle(getClass(), CALL_TO_SUPER);
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.main, menu);
+        getMenuInflater().inflate(R.menu.menu_main, menu);
         recLifeCycle(getClass(), RETURN_FROM_SUPER);
         return true;
     }

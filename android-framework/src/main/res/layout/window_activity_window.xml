@@ -14,7 +14,7 @@
     <include
         android:layout_width="match_parent"
         android:layout_marginTop="24dp"
-        layout="@layout/universal_div"
+        layout="@layout/window_universal_div"
         android:layout_height="1px"/>
 
     <LinearLayout
@@ -48,7 +48,7 @@
     <include
         android:layout_width="match_parent"
         android:layout_marginLeft="12dp"
-        layout="@layout/universal_div"
+        layout="@layout/window_universal_div"
         android:layout_height="1px"/>
 
     <View

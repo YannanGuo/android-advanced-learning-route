@@ -74,8 +74,8 @@ public class MusicService extends Service implements PlayerInterface, View.OnCli
     }
 
     private void initFloatWindow() {
-        floatView = LayoutInflater.from(this).inflate(R.layout.layout_float, null);
-        menuView = LayoutInflater.from(this).inflate(R.layout.layout_player, null);
+        floatView = LayoutInflater.from(this).inflate(R.layout.window_layout_float, null);
+        menuView = LayoutInflater.from(this).inflate(R.layout.window_layout_player, null);
 
         btnPre = (ImageButton) menuView.findViewById(R.id.player_previous);
         btnPla = (ImageButton) menuView.findViewById(R.id.player_play);

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <rotate xmlns:android="http://schemas.android.com/apk/res/android"
-    android:drawable="@drawable/cd"
+    android:drawable="@drawable/icon_cd"
     android:toDegrees="360"
     android:fromDegrees="0"
     android:visible="true"
