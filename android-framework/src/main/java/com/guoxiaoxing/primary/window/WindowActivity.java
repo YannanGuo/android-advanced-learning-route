@@ -1,65 +1,115 @@
 package com.guoxiaoxing.primary.window;
 
-import android.graphics.Color;
+import android.content.ComponentName;
+import android.content.Context;
+import android.content.Intent;
+import android.content.ServiceConnection;
+import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
-import android.view.MotionEvent;
-import android.view.View;
-import android.view.WindowManager;
-import android.widget.Button;
+import android.os.IBinder;
+import android.widget.CheckBox;
+import android.widget.CompoundButton;
+import android.widget.TextView;
 
 import com.guoxiaoxing.primary.R;
+import com.guoxiaoxing.primary.util.ApplicationUtils;
 
-public class WindowActivity extends AppCompatActivity {
+public class WindowActivity extends BaseActivity implements CompoundButton.OnCheckedChangeListener {
 
-    private WindowManager mWindowManager;
+    private ServiceConnection serviceConnection;
+    private Intent serviceIntent;
+    private TextView versionName;
+    private CheckBox checkBox;
 
-    private Button mButton;
-
-    private WindowManager.LayoutParams mLayoutParams;
-
+    private MusicService musicService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_window);
-        setupView();
-        addButton();
+        initAllViews();
+        bindService();
+        startService(serviceIntent);
     }
 
-    private void setupView() {
-        mWindowManager = getWindowManager();
+    private void initAllViews() {
+        checkBox = (CheckBox) findViewById(R.id.main_check_box);
+        checkBox.setOnCheckedChangeListener(this);
+
+        versionName = (TextView) findViewById(R.id.main_version_name);
+        versionName.setText(ApplicationUtils.getAppVersionName(this));
     }
 
-    private void addButton() {
-        mButton = new Button(this);
-        mButton.setText("悬浮窗");
-        mButton.setTextColor(Color.BLACK);
+    private void bindService() {
+        serviceIntent = new Intent(WindowActivity.this, MusicService.class);
+        if (serviceConnection == null) {
+            serviceConnection = new ServiceConnection() {
 
-        mLayoutParams = new WindowManager.LayoutParams();
+                @Override
+                public void onServiceConnected(ComponentName name, IBinder service) {
+                    musicService = ((MusicService.MusicBinder) service).getService();
 
-        mLayoutParams.width = 300;
-        mLayoutParams.height = 150;
-
-        mWindowManager.addView(mButton, mLayoutParams);
-
-        mButton.setOnTouchListener(new View.OnTouchListener() {
-            @Override
-            public boolean onTouch(View v, MotionEvent event) {
-
-                int rawX = (int) event.getRawX();
-                int rawY = (int) event.getRawY();
-
-                switch (event.getAction()) {
-                    case MotionEvent.ACTION_MOVE:
-                        mLayoutParams.x = rawX;
-                        mLayoutParams.y = rawY;
-                        mWindowManager.updateViewLayout(mButton, mLayoutParams);
-                        break;
+                    SharedPreferences preferences = getSharedPreferences("FloatMusicPlayer", Context.MODE_PRIVATE);
+                    boolean isCheck = preferences.getBoolean("isCheck", false);
+                    checkBox.setChecked(isCheck);
                 }
-                return false;
-            }
-        });
 
+                @Override
+                public void onServiceDisconnected(ComponentName name) {
+
+                }
+            };
+            bindService(serviceIntent, serviceConnection, BIND_AUTO_CREATE);
+        }
+    }
+
+    private void unbindService() {
+        if (null != serviceConnection) {
+            unbindService(serviceConnection);
+            serviceConnection = null;
+        }
+    }
+
+    @Override
+    protected void onDestroy() {
+        unbindService();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onPause() {
+        unbindService();
+        super.onPause();
+    }
+
+    @Override
+    protected void onResume() {
+        bindService();
+        super.onResume();
+    }
+
+    @Override
+    protected void onRestart() {
+        bindService();
+        super.onRestart();
+    }
+
+    @Override
+    protected void onStop() {
+        unbindService();
+        super.onStop();
+    }
+
+    @Override
+    public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+        if (isChecked) {
+            musicService.show();
+        } else {
+            musicService.dismiss();
+        }
+        SharedPreferences preferences = getSharedPreferences("FloatMusicPlayer", Context.MODE_PRIVATE);
+        SharedPreferences.Editor editor = preferences.edit();
+        editor.putBoolean("isCheck", isChecked);
+        editor.commit();
     }
 }

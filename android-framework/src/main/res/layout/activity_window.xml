@@ -1,14 +1,66 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_window"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.guoxiaoxing.primary.window.WindowActivity">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_height="match_parent"
+              android:layout_width="match_parent"
+              android:gravity="center_horizontal"
+              android:orientation="vertical"
+              android:background="#F8F8F8" >
 
-</RelativeLayout>
+    <View
+        android:layout_width="match_parent"
+        android:background="#FF222222"
+        android:layout_height="72dp" />
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_marginTop="24dp"
+        layout="@layout/universal_div"
+        android:layout_height="1px"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:layout_height="64dp"
+        android:paddingRight="12dp"
+        android:paddingLeft="12dp" >
+
+        <TextView
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="是否开启悬浮窗"
+            android:textColor="#727272"
+            android:textSize="18sp" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent" />
+
+        <CheckBox
+            android:id="@+id/main_check_box"
+            android:background="@drawable/selector_check_box"
+            android:layout_height="24dp"
+            android:layout_width="48dp"
+            android:button="@null" />
+    </LinearLayout>
+
+    <include
+        android:layout_width="match_parent"
+        android:layout_marginLeft="12dp"
+        layout="@layout/universal_div"
+        android:layout_height="1px"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <TextView
+        android:id="@+id/main_version_name"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_marginBottom="12dp"
+        android:textColor="#72727272"
+        android:text="1245"/>
+</LinearLayout>

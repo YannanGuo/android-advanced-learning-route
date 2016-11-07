@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+                xmlns:tools="http://schemas.android.com/tools"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:background="@drawable/shape_background_dark"
+        android:gravity="center"
+        android:orientation="vertical"
+        android:paddingLeft="12dp"
+        android:paddingRight="12dp"
+        android:paddingTop="8dp">
+
+        <TextView
+            android:id="@+id/player_displayname"
+            android:layout_width="180dp"
+            android:layout_height="wrap_content"
+            android:ellipsize="marquee"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:gravity="center"
+            android:singleLine="true"
+            android:text="N/A"
+            android:textColor="#11CD6E"
+            android:textSize="18sp"
+            tools:text="浅唱 - 许嵩"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/player_progress"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentLeft="true"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="3dp"
+                android:text="--:--"
+                android:textColor="#11CD6E"
+                android:textSize="8sp"
+                tools:text="04:15"/>
+
+            <TextView
+                android:id="@+id/player_duration"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_marginRight="8dp"
+                android:layout_marginTop="3dp"
+                android:text="--:--"
+                android:textColor="#11CD6E"
+                android:textSize="8sp"
+                tools:text="12:45"/>
+        </RelativeLayout>
+
+        <SeekBar
+            android:id="@+id/player_seek"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:max="100"
+            android:maxHeight="2dp"
+            android:minHeight="2dp"
+            android:paddingBottom="3dp"
+            android:progress="0"
+            android:progressDrawable="@drawable/layer_seekbar"
+            android:thumb="@drawable/shape_thumb"
+            tools:progress="50"
+            tools:secondaryProgress="90"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:padding="6dp">
+
+            <ImageButton
+                android:id="@+id/player_previous"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@null"
+                android:src="@drawable/landscape_player_btn_pre_press"/>
+
+            <ImageButton
+                android:id="@+id/player_play"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginRight="18dp"
+                android:background="@null"
+                android:src="@drawable/landscape_player_btn_play_press"/>
+
+            <ImageButton
+                android:id="@+id/player_next"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:background="@null"
+                android:src="@drawable/landscape_player_btn_next_press"/>
+        </LinearLayout>
+    </LinearLayout>
+</RelativeLayout>
