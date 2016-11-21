@@ -32,35 +32,27 @@
 [Material Design 视频播放器](https://github.com/guoxiaoxing/material-design-video-player)
 
 
-#一 Android新特性
+# Android新特性
 
-#二 Android框架原理
+# Android框架原理
 
-2.1 Window工作原理 --------------------------------------------------------------- **已完成**
+Window工作原理 --------------------------------------------------------------- **已完成**
 
-2.2 View事件体系与工作原理 
+View事件体系与工作原理 
 
-2.3 Android四大组件原理
+Android四大组件原理
 
-Activity
+Android动画原理
 
-Service
+Android消息机制原理
 
-BroadcastReceiver
+Android线程与线程池原理
 
-ContentProvider
+Android跨进程通信原理
 
-2.4 Android动画原理
+Android平台构建Web应用
 
-2.5 Android消息机制原理
-
-2.6 Android线程与线程池原理
-
-2.7 Android跨进程通信原理
-
-2.8 Android平台构建Web应用
-
-2.9 Android性能优化实践
+Android性能优化实践
 
 >另外，有些内容例如: 网络请求、异步实现等)需要更多详尽的讨论与分析, 这些内容会单独的分离开来。
 

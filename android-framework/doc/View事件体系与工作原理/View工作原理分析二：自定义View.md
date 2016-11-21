@@ -1,9 +1,21 @@
 #自定义View的方法与技巧
 
-作者: 郭嘉
-邮箱: guoxiaoxingv@163.com
-博客: https://guoxiaoxing.github.io
-网址: https://github.com/guoxiaoxing
+# Android进阶学习路线
+
+作者: 郭孝星  
+邮箱: guoxiaoxingse@gmail.com  
+博客: https://guoxiaoxing.github.io/  
+简书: http://www.jianshu.com/users/66a47e04215b/latest_articles
+
+**关于作者**
+
+>郭孝星，字仲明，非著名程序员，代码洁癖患者，爱编程，好音乐，喜烹饪，爱一切有趣的事物和人。
+
+**关于文章**
+
+>作者的文章都会同时发布在个人博客和简书博客上, 文章顶部也会附上文章的Github链接。如果文章中有什么疑问欢迎发邮件与我交流, 对于交流的问
+题, 请描述清楚并附上代码与日志, 我一般都会给予回复。如果文章中有什么错误, 也欢迎斧正。如果你觉得本文章对你有所帮助, 也欢迎去star文
+章, 关注文章的最新的动态。
 
 痛哟前面几篇文章, 我们对View的工作原理与事件体系有了相应的理解, 这是自定义View的基础。下面我们就结合实例具体的阐述一下如何进行
 View的自定义
