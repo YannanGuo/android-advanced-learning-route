@@ -39,87 +39,96 @@ Android 6.0开始引入了新的运行时权限检查授权机制，替代了之
 
 https://developer.android.com/guide/topics/security/normal-permissions.html
 
-ACCESS_LOCATION_EXTRA_COMMANDS
-ACCESS_NETWORK_STATE
-ACCESS_NOTIFICATION_POLICY
-ACCESS_WIFI_STATE
-BLUETOOTH
-BLUETOOTH_ADMIN
-BROADCAST_STICKY
-CHANGE_NETWORK_STATE
-CHANGE_WIFI_MULTICAST_STATE
-CHANGE_WIFI_STATE
-DISABLE_KEYGUARD
-EXPAND_STATUS_BAR
-GET_PACKAGE_SIZE
-INSTALL_SHORTCUT
-INTERNET
-KILL_BACKGROUND_PROCESSES
-MODIFY_AUDIO_SETTINGS
-NFC
-READ_SYNC_SETTINGS
-READ_SYNC_STATS
-RECEIVE_BOOT_COMPLETED
-REORDER_TASKS
-REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
-REQUEST_INSTALL_PACKAGES
-SET_ALARM
-SET_TIME_ZONE
-SET_WALLPAPER
-SET_WALLPAPER_HINTS
-TRANSMIT_IR
-UNINSTALL_SHORTCUT
-USE_FINGERPRINT
-VIBRATE
-WAKE_LOCK
-WRITE_SYNC_SETTINGS
+- ACCESS_LOCATION_EXTRA_COMMANDS
+- ACCESS_NETWORK_STATE
+- ACCESS_NOTIFICATION_POLICY
+- ACCESS_WIFI_STATE
+- BLUETOOTH
+- BLUETOOTH_ADMIN
+- BROADCAST_STICKY
+- CHANGE_NETWORK_STATE
+- CHANGE_WIFI_MULTICAST_STATE
+- CHANGE_WIFI_STATE
+- DISABLE_KEYGUARD
+- EXPAND_STATUS_BAR
+- GET_PACKAGE_SIZE
+- INSTALL_SHORTCUT
+- INTERNET
+- KILL_BACKGROUND_PROCESSES
+- MODIFY_AUDIO_SETTINGS
+- NFC
+- READ_SYNC_SETTINGS
+- READ_SYNC_STATS
+- RECEIVE_BOOT_COMPLETED
+- REORDER_TASKS
+- REQUEST_IGNORE_BATTERY_OPTIMIZATIONS
+- REQUEST_INSTALL_PACKAGES
+- SET_ALARM
+- SET_TIME_ZONE
+- SET_WALLPAPER
+- SET_WALLPAPER_HINTS
+- TRANSMIT_IR
+- UNINSTALL_SHORTCUT
+- USE_FINGERPRINT
+- VIBRATE
+- WAKE_LOCK
+- WRITE_SYNC_SETTINGS
 
 ### 危险权限
 
 https://developer.android.com/guide/topics/security/permissions.html#permissions
 
 group:android.permission-group.CONTACTS
-  permission:android.permission.WRITE_CONTACTS
-  permission:android.permission.GET_ACCOUNTS
-  permission:android.permission.READ_CONTACTS
+
+- permission:android.permission.WRITE_CONTACTS
+- permission:android.permission.GET_ACCOUNTS
+- permission:android.permission.READ_CONTACTS
 
 group:android.permission-group.PHONE
-  permission:android.permission.READ_CALL_LOG
-  permission:android.permission.READ_PHONE_STATE
-  permission:android.permission.CALL_PHONE
-  permission:android.permission.WRITE_CALL_LOG
-  permission:android.permission.USE_SIP
-  permission:android.permission.PROCESS_OUTGOING_CALLS
-  permission:com.android.voicemail.permission.ADD_VOICEMAIL
+
+- permission:android.permission.READ_CALL_LOG
+- permission:android.permission.READ_PHONE_STATE
+- permission:android.permission.CALL_PHONE
+- permission:android.permission.WRITE_CALL_LOG
+- permission:android.permission.USE_SIP
+- permission:android.permission.PROCESS_OUTGOING_CALLS
+- permission:com.android.voicemail.permission.ADD_VOICEMAIL
 
 group:android.permission-group.CALENDAR
-  permission:android.permission.READ_CALENDAR
-  permission:android.permission.WRITE_CALENDAR
+
+- permission:android.permission.READ_CALENDAR
+- permission:android.permission.WRITE_CALENDAR
 
 group:android.permission-group.CAMERA
-  permission:android.permission.CAMERA
+
+- permission:android.permission.CAMERA
 
 group:android.permission-group.SENSORS
-  permission:android.permission.BODY_SENSORS
+
+- permission:android.permission.BODY_SENSORS
 
 group:android.permission-group.LOCATION
-  permission:android.permission.ACCESS_FINE_LOCATION
-  permission:android.permission.ACCESS_COARSE_LOCATION
+
+- permission:android.permission.ACCESS_FINE_LOCATION
+- permission:android.permission.ACCESS_COARSE_LOCATION
 
 group:android.permission-group.STORAGE
-  permission:android.permission.READ_EXTERNAL_STORAGE
-  permission:android.permission.WRITE_EXTERNAL_STORAGE
+
+- permission:android.permission.READ_EXTERNAL_STORAGE
+- permission:android.permission.WRITE_EXTERNAL_STORAGE
 
 group:android.permission-group.MICROPHONE
-  permission:android.permission.RECORD_AUDIO
+
+- permission:android.permission.RECORD_AUDIO
 
 group:android.permission-group.SMS
-  permission:android.permission.READ_SMS
-  permission:android.permission.RECEIVE_WAP_PUSH
-  permission:android.permission.RECEIVE_MMS
-  permission:android.permission.RECEIVE_SMS
-  permission:android.permission.SEND_SMS
-  permission:android.permission.READ_CELL_BROADCASTS
+
+- permission:android.permission.READ_SMS
+- permission:android.permission.RECEIVE_WAP_PUSH
+- permission:android.permission.RECEIVE_MMS
+- permission:android.permission.RECEIVE_SMS
+- permission:android.permission.SEND_SMS
+- permission:android.permission.READ_CELL_BROADCASTS
 
 我们可以使用 adb 工具从命令行管理权限：
 
@@ -158,14 +167,15 @@ int permissionCheck = ContextCompat.checkSelfPermission(thisActivity,
 
 关于解释应用需要权限的原因
 
-![](/art/request_permission_dialog.png)
+![](/android-new-feature/art/request_permission_dialog.png)
 
 ```
-在某些情况下，我们需要帮助用户了解您的应用为什么需要某项权限。例如，如果用户启动一个摄影应用，用户对应用要求使用相机的权限可能不会感到吃惊，但用户可能无法理解为什么此应用想要访问用户的位置或联系人。
-在请求权限之前，不妨为用户提供一个解释。请记住，您不需要通过解释来说服用户；如果您提供太多解释，用户可能发现应用令人失望并将其移除。
+在某些情况下，我们需要帮助用户了解您的应用为什么需要某项权限。例如，如果用户启动一个摄影应用，用户对应用要求使用相机的权限可能不会感到吃惊，
+但用户可能无法理解为什么此应用想要访问用户的位置或联系人。在请求权限之前，不妨为用户提供一个解释。请记住，您不需要通过解释来说服用户；如果
+您提供太多解释，用户可能发现应用令人失望并将其移除。
 
-我们也可以采用的一个方法是仅在用户已拒绝某项权限请求时提供解释。如果用户继续尝试使用需要某项权限的功能，但继续拒绝权限请求，则可能表明用户不理解应用为什么需要此权限才能提供相关功能。
-对于这种情况，比较好的做法是显示解释。
+我们也可以采用的一个方法是仅在用户已拒绝某项权限请求时提供解释。如果用户继续尝试使用需要某项权限的功能，但继续拒绝权限请求，则可能表明用户
+不理解应用为什么需要此权限才能提供相关功能。\对于这种情况，比较好的做法是显示解释。
 ```
 
 为了帮助查找用户可能需要解释的情形，Android 提供了一个实用程序方法，即 shouldShowRequestPermissionRationale()。如果应用之前请求过此权限但用户拒绝了请求，此方法将返回 true。
