@@ -17,8 +17,8 @@
 
 **文章资源**
 
-[文章链接](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/doc/Android%E6%96%B0%E7%89%B9%E6%80%A7%E8%A7%A3%E6%9E%90%E4%B8%80%EF%BC%9A%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90.md)
-[代码链接](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/src/main/java/com/guoyannan/feature/permission/PermissionActivity.java)
+- [文章链接](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/doc/Android%E6%96%B0%E7%89%B9%E6%80%A7%E8%A7%A3%E6%9E%90%E4%B8%80%EF%BC%9A%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90.md)
+- [代码链接](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/src/main/java/com/guoyannan/feature/permission/PermissionActivity.java)
 
 在讨论运行时权限以前，我们先来回忆一下以前的权限使用，通常我们申请一个权限，必须在应用manifest文件中包含一个或多个 <uses-permission> 标记。
 
