@@ -17,7 +17,7 @@
 
 **文章资源**
 
-[文章链接](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/doc/Android%E6%96%B0%E7%89%B9%E6%80%A7%E4%B8%80%EF%BC%9A%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90.md)
+[文章链接](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/doc/Android%E6%96%B0%E7%89%B9%E6%80%A7%E8%A7%A3%E6%9E%90%E4%B8%80%EF%BC%9A%E8%BF%90%E8%A1%8C%E6%97%B6%E6%9D%83%E9%99%90.md)
 
 [代码链接](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/src/main/java/com/guoyannan/feature/permission/PermissionActivity.java)
 
@@ -361,7 +361,7 @@ private void insertDummyContact() {
 
 PermissionsDispatcher: https://github.com/hotchemi/PermissionsDispatcher
 
-![](/android-new-feature/PermissionsDispatcher.png)
+![](/android-new-feature/art/PermissionsDispatcher.png)
 
 ### 1 安装插件
 
@@ -408,7 +408,7 @@ dependencies {
 
 ### 3 右键点击生成运行时权限代码
 
-![](/android-new-feature/AndroidAnnotationsPermissionsDispatcherPlugin.png)
+![](/android-new-feature/art/AndroidAnnotationsPermissionsDispatcherPlugin.png)
 
 填写好方法名后生成的方法会带有以下4个注解：
 
