@@ -91,7 +91,8 @@ Android 6.0开始引入了新的运行时权限检查授权机制，替代了之
 - WAKE_LOCK
 - WRITE_SYNC_SETTINGS
 
-参考链接：https://developer.android.com/guide/topics/security/normal-permissions.html
+参考链接
+https://developer.android.com/guide/topics/security/normal-permissions.html
 
 ### 危险权限
 
@@ -164,7 +165,8 @@ $ adb shell pm list permissions -d -g
 $ adb shell pm [grant|revoke] <permission-name> ...
 ```
 
-参考链接：https://developer.android.com/guide/topics/security/permissions.html#permissions
+参考链接
+https://developer.android.com/guide/topics/security/permissions.html#permissions
 
 # 运行时权限处理流程
 
@@ -202,7 +204,7 @@ int permissionCheck = ContextCompat.checkSelfPermission(thisActivity,
 
 ### 3 请求权限
 
-![](/android-new-feature/art/request_permission_dialog.png)
+![](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/art/request_permission_dialog.png)
 
 ```java
 //请求权限
@@ -359,9 +361,9 @@ private void insertDummyContact() {
 如果每次处理运行时权限都要写辣么一堆代码，估计我们也要被累死了～～，所以也用相应的开源库来简化运行时权限的处理。试用了很多，目前感觉最好用
 的是PermissionsDispatcher，该库试用使用注解的方式，动态生成类处理运行时权限，下面介绍一个它的试用流程。
 
-PermissionsDispatcher: https://github.com/hotchemi/PermissionsDispatcher
+[PermissionsDispatcher](https://github.com/hotchemi/PermissionsDispatcher)
 
-![](/android-new-feature/art/PermissionsDispatcher.png)
+![](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/art/PermissionsDispatcher.png)
 
 ### 1 安装插件
 
@@ -408,7 +410,7 @@ dependencies {
 
 ### 3 右键点击生成运行时权限代码
 
-![](/android-new-feature/art/AndroidAnnotationsPermissionsDispatcherPlugin.png)
+![](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/art/AndroidAnnotationsPermissionsDispatcherPlugin.png)
 
 填写好方法名后生成的方法会带有以下4个注解：
 
