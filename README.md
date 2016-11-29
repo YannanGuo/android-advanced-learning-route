@@ -29,8 +29,8 @@
 
 目前的项目有:
 
-[Material Design 音乐播放器](https://github.com/guoxiaoxing/material-design-music-player)
-[Material Design 视频播放器](https://github.com/guoxiaoxing/material-design-video-player)
+- [Material Design 音乐播放器](https://github.com/guoxiaoxing/material-design-music-player)
+- [Material Design 视频播放器](https://github.com/guoxiaoxing/material-design-video-player)
 
 # Android新特性
 
