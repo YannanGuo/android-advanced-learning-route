@@ -1,4 +1,4 @@
-# Android新特性一：运行时权限
+# Android新特性解析一：运行时权限
 
 作者: 郭孝星  
 邮箱: guoxiaoxingse@163.com  
