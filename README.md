@@ -15,6 +15,8 @@
 问题, 请描述清楚并附上代码与日志, 一般都会给予回复。如果文章中有什么错误, 也欢迎斧正。如果你觉得本文章对你有所帮助, 也欢迎去star文章, 
 关注文章的最新的动态。
 
+**文章资源**
+
 学习目标：  
 
 1. 深入理解Android新特效
@@ -28,45 +30,33 @@
 目前的项目有:
 
 [Material Design 音乐播放器](https://github.com/guoxiaoxing/material-design-music-player)
-
 [Material Design 视频播放器](https://github.com/guoxiaoxing/material-design-video-player)
-
 
 # Android新特性
 
+- [Android新特性解析一：运行时权限](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/doc/Android新特性解析一：运行时权限.md)
+
 # Android框架原理
 
-Window工作原理 --------------------------------------------------------------- **已完成**
-
-View工作原理分析
-
-Android四大组件原理
-
-Android动画原理
-
-Android消息机制原理
-
-Android线程与线程池原理
-
-Android跨进程通信原理
-
-Android平台构建Web应用
-
-Android性能优化实践
+- [Window工作原理](https://github.com/guoxiaoxing/android-advanced-learning-route/tree/master/android-framework/doc/Window工作原理)
+- View工作原理分析
+- [Android四大组件工作原理分析](https://github.com/guoxiaoxing/android-advanced-learning-route/tree/master/android-framework/doc/Android四大组件工作原理分析)
+- Android动画原理
+- Android消息机制原理
+- Android线程与线程池原理
+- Android跨进程通信原理
+- Android平台构建Web应用
+- Android性能优化实践
 
 >另外，有些内容例如: 网络请求、异步实现等)需要更多详尽的讨论与分析, 这些内容会单独的分离开来。
 
 目前已经分离的内容有:
 
-[Android应用架构](https://github.com/YannanGuo/android-app-architecture)
-
-[Android网络编程](https://github.com/YannanGuo/android-network-programming)
-
-[Android异步编程](https://github.com/YannanGuo/android-asynchronous-programming)
-
-[Android崩溃处理](https://github.com/YannanGuo/android-app-crash-handler)
-
-[Android混合编程](https://github.com/YannanGuo/android-hybird-app)
+- [Android应用架构](https://github.com/YannanGuo/android-app-architecture)
+- [Android网络编程](https://github.com/YannanGuo/android-network-programming)
+- [Android异步编程](https://github.com/YannanGuo/android-asynchronous-programming)
+- [Android崩溃处理](https://github.com/YannanGuo/android-app-crash-handler)
+- [Android混合编程](https://github.com/YannanGuo/android-hybird-app)
 
 #三 Android系统原理
 
