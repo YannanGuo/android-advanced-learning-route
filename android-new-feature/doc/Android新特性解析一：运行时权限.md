@@ -204,7 +204,7 @@ int permissionCheck = ContextCompat.checkSelfPermission(thisActivity,
 
 ### 3 请求权限
 
-![](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/art/request_permission_dialog.png)
+![](https://github.com/guoxiaoxing/android-advanced-learning-route/raw/master/android-new-feature/art/request_permission_dialog.png)
 
 ```java
 //请求权限
@@ -363,7 +363,7 @@ private void insertDummyContact() {
 
 [PermissionsDispatcher](https://github.com/hotchemi/PermissionsDispatcher)
 
-![](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/art/PermissionsDispatcher.png)
+![](https://github.com/guoxiaoxing/android-advanced-learning-route/raw/master/android-new-feature/art/PermissionsDispatcher.png)
 
 ### 1 安装插件
 
@@ -410,7 +410,7 @@ dependencies {
 
 ### 3 右键点击生成运行时权限代码
 
-![](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/art/AndroidAnnotationsPermissionsDispatcherPlugin.png)
+![](https://github.com/guoxiaoxing/android-advanced-learning-route/raw/master/android-new-feature/art/AndroidAnnotationsPermissionsDispatcherPlugin.png)
 
 填写好方法名后生成的方法会带有以下4个注解：
 
