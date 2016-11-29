@@ -402,5 +402,111 @@ dependencies {
 
 ```java
 
+/******************
+ * 注解方式申请权限 *
+ ******************/
+
+private static String DUMMY_CONTACT_NAME = "__DUMMY CONTACT from runtime permissions sample";
+
+private void setupView() {
+    findViewById(R.id.btn_request_runtime_permission).setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            //insertContactWithCheck()是自动生成的方法
+            PermissionActivityPermissionsDispatcher.insertContactWithCheck(PermissionActivity.this);
+        }
+    });
+}
+
+@Override
+public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    //权限申请的结果交由PermissionActivityPermissionsDispatcher来处理
+    PermissionActivityPermissionsDispatcher.onRequestPermissionsResult(this, requestCode, grantResults);
+}
+
+/**
+ * 需要申请权限的操作
+ */
+@NeedsPermission(Manifest.permission.WRITE_CONTACTS)
+void insertContact() {
+    insertDummyContact();
+}
+
+/**
+ * 解释权限申请原因
+ *
+ * @param request request
+ */
+@OnShowRationale(Manifest.permission.WRITE_CONTACTS)
+void onShowRationale(final PermissionRequest request) {
+    new AlertDialog.Builder(this)
+            .setMessage("解释为何申请权限")
+            .setPositiveButton("同意", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    request.proceed();
+                }
+            })
+            .setNegativeButton("拒绝", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    request.cancel();
+                }
+            })
+            .show();
+}
+
+/**
+ * 权限申请拒绝
+ */
+@OnPermissionDenied(Manifest.permission.WRITE_CONTACTS)
+void onPermissionDenied() {
+    Toast.makeText(PermissionActivity.this, "添加联系人权限被拒绝", Toast.LENGTH_LONG).show();
+}
+
+/**
+ * 权限申请不再询问
+ */
+@OnNeverAskAgain(Manifest.permission.WRITE_CONTACTS)
+void onNeverAskAgain() {
+    Toast.makeText(PermissionActivity.this, "添加联系人权限不再被询问", Toast.LENGTH_LONG).show();
+}
+
+/**
+ * Accesses the Contacts content provider directly to insert a new contact.
+ * <p>
+ * The contact is called "__DUMMY ENTRY" and only contains a name.
+ */
+private void insertDummyContact() {
+    // Two operations are needed to insert a new contact.
+    ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>(2);
+
+    // First, set up a new raw contact.
+    ContentProviderOperation.Builder op =
+            ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
+                    .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, null)
+                    .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null);
+    operations.add(op.build());
+
+    // Next, set the name for the contact.
+    op = ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+            .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+            .withValue(ContactsContract.Data.MIMETYPE,
+                    ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+            .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME,
+                    DUMMY_CONTACT_NAME);
+    operations.add(op.build());
+
+    // Apply the operations.
+    ContentResolver resolver = getContentResolver();
+    try {
+        resolver.applyBatch(ContactsContract.AUTHORITY, operations);
+    } catch (RemoteException e) {
+        Log.d(TAG, "Could not add a new contact: " + e.getMessage());
+    } catch (OperationApplicationException e) {
+        Log.d(TAG, "Could not add a new contact: " + e.getMessage());
+    }
+}
 ```
 
