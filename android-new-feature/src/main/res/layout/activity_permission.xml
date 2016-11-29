@@ -11,4 +11,10 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.guoyannan.feature.permission.PermissionActivity">
 
+    <Button
+        android:id="@+id/btn_request_runtime_permission"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="申请运行时权限"/>
+
 </RelativeLayout>

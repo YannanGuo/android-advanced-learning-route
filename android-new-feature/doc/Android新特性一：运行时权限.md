@@ -24,11 +24,9 @@ Android 6.0开始引入了新的运行时权限检查授权机制，替代了之
 权限失效会导致 SecurityException 被扔回应用。但不能保证每个地方都是这样。例如，sendBroadcast(Intent) 方法在数据传递到每个接收者时会检查
 权限，在方法调用返回后，即使权限失效，您也不会收到异常。但在几乎所有情况下，权限失效会记入系统日志。
 
-# 正常权限与危险权限
+# 权限类型
 
-既然提到正常权限和危险权限，我们就需要了解哪些是正常权限，哪些是危险权限。
-
-统权限分为几个保护级别。需要了解的两个最重要保护级别是正常权限和危险权限：
+系统权限分为两类，正常权限和危险权限：
 
 - 正常权限涵盖应用需要访问其沙盒外部数据或资源，但对用户隐私或其他应用操作风险很小的区域。例如，设置时区的权限就是正常权限。如果应用声明其需要
 正常权限，系统会自动向应用授予该权限。
@@ -36,8 +34,6 @@ Android 6.0开始引入了新的运行时权限检查授权机制，替代了之
 权限。如果应用声明其需要危险权限，则用户必须明确向应用授予该权限。
 
 ### 正常权限
-
-https://developer.android.com/guide/topics/security/normal-permissions.html
 
 - ACCESS_LOCATION_EXTRA_COMMANDS
 - ACCESS_NETWORK_STATE
@@ -74,15 +70,18 @@ https://developer.android.com/guide/topics/security/normal-permissions.html
 - WAKE_LOCK
 - WRITE_SYNC_SETTINGS
 
+参考链接：https://developer.android.com/guide/topics/security/normal-permissions.html
+
 ### 危险权限
 
-https://developer.android.com/guide/topics/security/permissions.html#permissions
+危险权限是分组的，同一组的任何一个权限被授权了，其他权限也自动被授权。例如，一旦WRITE_CONTACTS被授权了，app也有WRITE_CONTACTS
+和GET_ACCOUNTS权限了。
 
 group:android.permission-group.CONTACTS
 
 - permission:android.permission.WRITE_CONTACTS
 - permission:android.permission.GET_ACCOUNTS
-- permission:android.permission.READ_CONTACTS
+- permission:android.permission.WRITE_CONTACTS
 
 group:android.permission-group.PHONE
 
@@ -144,62 +143,264 @@ $ adb shell pm list permissions -d -g
 $ adb shell pm [grant|revoke] <permission-name> ...
 ```
 
-# 处理运行时权限
+参考链接：https://developer.android.com/guide/topics/security/permissions.html#permissions
 
-## 检查权限
+# 运行时权限处理流程
+
+### 1 向清单添加权限
+
+```xml
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+        package="com.example.snazzyapp">
+
+    <uses-permission android:name="android.permission.WRITE_CONTACTS"/>
+    
+
+    <application ...>
+        ...
+    </application>
+
+</manifest>
+```
+
+
+### 2 检查权限
 
 如果我们的应用需要危险权限，则每次执行需要这一权限的操作时您都必须检查自己是否具有该权限。用户始终可以自由调用此权限，因此，即使应用昨天使用了相机，它
 不能假设自己今天仍具有该权限。要检查是否具有某项权限，可以调用 ContextCompat.checkSelfPermission() 方法。
 
-例如，以下代码段显示了如何检查 Activity 是否具有读取联系人的权限：
+例如，以下代码段显示了如何检查 Activity 是否具有写入联系人的权限：
 
 ```java
 // Assume thisActivity is the current activity
 int permissionCheck = ContextCompat.checkSelfPermission(thisActivity,
-        Manifest.permission.READ_CONTACTS);
+        Manifest.permission.WRITE_CONTACTS);
 ```
         
 如果应用具有此权限，方法将返回 PackageManager.PERMISSION_GRANTED，并且应用可以继续操作。如果应用不具有此权限，方法将返回 PERMISSION_DENIED，且应用必须明确向用户要求权限。
 
-## 请求权限
-
-如果我们的应用需要应用清单中列出的危险权限，那么，它必须要求用户授予该权限。Android 为您提供了多种权限请求方式。调用这些方法将显示一个标准的 Android 对话框，不过，您不能对它们进行自定义。
-
-关于解释应用需要权限的原因
+### 3 请求权限
 
 ![](/android-new-feature/art/request_permission_dialog.png)
 
-```
-在某些情况下，我们需要帮助用户了解您的应用为什么需要某项权限。例如，如果用户启动一个摄影应用，用户对应用要求使用相机的权限可能不会感到吃惊，
-但用户可能无法理解为什么此应用想要访问用户的位置或联系人。在请求权限之前，不妨为用户提供一个解释。请记住，您不需要通过解释来说服用户；如果
-您提供太多解释，用户可能发现应用令人失望并将其移除。
-
-我们也可以采用的一个方法是仅在用户已拒绝某项权限请求时提供解释。如果用户继续尝试使用需要某项权限的功能，但继续拒绝权限请求，则可能表明用户
-不理解应用为什么需要此权限才能提供相关功能。\对于这种情况，比较好的做法是显示解释。
+```java
+//请求权限
+ActivityCompat.requestPermissions(PermissionActivity.this,
+        new String[]{Manifest.permission.WRITE_CONTACTS},
+        REQUEST_CODE_FOR_PERMISSION_CALLBACK);
 ```
 
-为了帮助查找用户可能需要解释的情形，Android 提供了一个实用程序方法，即 shouldShowRequestPermissionRationale()。如果应用之前请求过此权限但用户拒绝了请求，此方法将返回 true。
+该方法会弹出一个系统对话框，来供用户选择是否允许该权限申请，当然用户可能会拒绝我们的权限申请，这种情况下说明用户不理解我们
+为什么要申请这个权限，这个时候最好的做法是给用户一个解释，如下所示：
 
-注：如果用户在过去拒绝了权限请求，并在权限请求系统对话框中选择了 Don't ask again 选项，此方法将返回 false。如果设备规范禁止应用具有该权限，此方法也会返回 false。
+```java
+//是否给用户一个关于权限申请的解释
+if (ActivityCompat.shouldShowRequestPermissionRationale(PermissionActivity.this,
+        Manifest.permission.WRITE_CONTACTS)) {
+    // Show an expanation to the user *asynchronously* -- don't block
+    // this thread waiting for the user's response! After the user
+    // sees the explanation, try again to request the permission.
 
-如果应用尚无所需的权限，则应用必须调用一个 requestPermissions() 方法，以请求适当的权限。应用将传递其所需的权限，以及您指定用于识别此权限请求的整型请求代码。
-|
-此方法异步运行：它会立即返回，并且在用户响应对话框之后，系统会使用结果调用应用的回调方法，将应用传递的相同请求代码传递到 requestPermissions()。
+} else {
+    //请求权限
+    ActivityCompat.requestPermissions(PermissionActivity.this,
+            new String[]{Manifest.permission.WRITE_CONTACTS},
+            REQUEST_CODE_FOR_PERMISSION_CALLBACK);
+}
+```
 
+>注：如果应用之前请求过此权限但用户拒绝了请求，此方法将返回 true。如果用户在过去拒绝了权限请求，并在权限请求系统对话框中选择了 Don't ask again 选
+项，此方法将返回 false。如果设备规范禁止应用具有该权限，此方法也会返回 false。此方法异步运行：它会立即返回，并且在用户响应对话框之后，系统会使用结
+果调用应用的回调方法，将应用传递的相同请求代码传递到 requestPermissions()。
 
-## 处理权限请求响应
+### 4 处理权限请求响应
 
 当应用请求权限时，系统将向用户显示一个对话框。当用户响应时，系统将调用应用的 onRequestPermissionsResult() 方法，向其传递用户响应。我们可以在此方法里是否已获得相应权限。
-回调会将您传递的相同请求代码传递给 requestPermissions()。例如，如果应用请求 READ_CONTACTS 访问权限，则它可能采用以下回调方法
+回调会将您传递的相同请求代码传递给 requestPermissions()。
 
-系统显示的对话框说明了您的应用需要访问的权限组；它不会列出具体权限。例如，如果您请求 READ_CONTACTS 权限，系统对话框只显示您的应用需要访问设备的联系人。用户只需要为每个权限组授予一次权限。如果您的应用请求该组中的任何其他权限（已在您的应用清单中列出），系统将自动授予应用这些权限。当您请求此权限时，系统会调用您的 onRequestPermissionsResult() 回调方法，并传递 PERMISSION_GRANTED，如果用户已通过系统对话框明确同意您的权限请求，系统将采用相同方式操作。
+```java
+@Override
+public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    switch (requestCode) {
+        case REQUEST_CODE_FOR_PERMISSION_CALLBACK:
+            //如果权限请求被拒绝，则grantResults为空
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //权限已经被授予，可以添加联系人了
+                Toast.makeText(PermissionActivity.this, "添加联系人权限被授予", Toast.LENGTH_LONG).show();
+                insertDummyContact();
+            } else {
+                //权限请求被拒绝
+                Toast.makeText(PermissionActivity.this, "添加联系人权限被拒绝", Toast.LENGTH_LONG).show();
+            }
+            break;
+    }
+}
+```
 
-注：您的应用仍需要明确请求其需要的每项权限，即使用户已向应用授予该权限组中的其他权限。此外，权限分组在将来的 Android 版本中可能会发生变化。您的代码不应依赖特定权限属于或不属于相同组这种假设。
+整个流程的代码如下：
 
-例如，假设您在应用清单中列出了 READ_CONTACTS 和 WRITE_CONTACTS。如果您请求 READ_CONTACTS 且用户授予了此权限，那么，当您请求 WRITE_CONTACTS 时，系统将立即授予您该权限，不会与用户交互。
+```java
 
-如果用户拒绝了某项权限请求，您的应用应采取适当的操作。例如，您的应用可能显示一个对话框，解释它为什么无法执行用户已经请求但需要该权限的操作。
+/******************
+ * 原生代码申请权限 *
+ ******************/
+ 
+private static String DUMMY_CONTACT_NAME = "__DUMMY CONTACT from runtime permissions sample";
+private static final int REQUEST_CODE_FOR_PERMISSION_CALLBACK = 0x000001;
 
-当系统要求用户授予权限时，用户可以选择指示系统不再要求提供该权限。这种情况下，无论应用在什么时候使用 requestPermissions() 再次要求该权限，系统都会立即拒绝此请求。系统会调用您的 onRequestPermissionsResult() 回调方法，并传递 PERMISSION_DENIED，如果用户再次明确拒绝了您的请求，系统将采用相同方式操作。这意味着当您调用 requestPermissions() 时，您不能假设已经发生与用户的任何直接交互。
+private void requestRuntimePermission() {
+    // API 23及其以后的版本
+    if (Build.VERSION.SDK_INT >= 23) {
+        // 检测是否已经被授权
+        if (ContextCompat.checkSelfPermission(PermissionActivity.this,
+                Manifest.permission.WRITE_CONTACTS)
+                != PackageManager.PERMISSION_GRANTED) {
+            //是否给用户一个关于权限申请的解释
+            if (ActivityCompat.shouldShowRequestPermissionRationale(PermissionActivity.this,
+                    Manifest.permission.WRITE_CONTACTS)) {
+                // Show an expanation to the user *asynchronously* -- don't block
+                // this thread waiting for the user's response! After the user
+                // sees the explanation, try again to request the permission.
 
+            } else {
+                //请求权限
+                ActivityCompat.requestPermissions(PermissionActivity.this,
+                        new String[]{Manifest.permission.WRITE_CONTACTS},
+                        REQUEST_CODE_FOR_PERMISSION_CALLBACK);
+            }
+        }
+    }
+    //API 23以前版本
+    else {
+
+    }
+}
+
+@Override
+public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+    super.onRequestPermissionsResult(requestCode, permissions, grantResults);
+    switch (requestCode) {
+        case REQUEST_CODE_FOR_PERMISSION_CALLBACK:
+            //如果权限请求被拒绝，则grantResults为空
+            if (grantResults.length > 0 && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                //权限已经被授予，可以添加联系人了
+                Toast.makeText(PermissionActivity.this, "添加联系人权限被授予", Toast.LENGTH_LONG).show();
+                insertDummyContact();
+            } else {
+                //权限请求被拒绝
+                Toast.makeText(PermissionActivity.this, "添加联系人权限被拒绝", Toast.LENGTH_LONG).show();
+            }
+            break;
+    }
+}
+
+/**
+ * Accesses the Contacts content provider directly to insert a new contact.
+ * <p>
+ * The contact is called "__DUMMY ENTRY" and only contains a name.
+ */
+private void insertDummyContact() {
+    // Two operations are needed to insert a new contact.
+    ArrayList<ContentProviderOperation> operations = new ArrayList<ContentProviderOperation>(2);
+
+    // First, set up a new raw contact.
+    ContentProviderOperation.Builder op =
+            ContentProviderOperation.newInsert(ContactsContract.RawContacts.CONTENT_URI)
+                    .withValue(ContactsContract.RawContacts.ACCOUNT_TYPE, null)
+                    .withValue(ContactsContract.RawContacts.ACCOUNT_NAME, null);
+    operations.add(op.build());
+
+    // Next, set the name for the contact.
+    op = ContentProviderOperation.newInsert(ContactsContract.Data.CONTENT_URI)
+            .withValueBackReference(ContactsContract.Data.RAW_CONTACT_ID, 0)
+            .withValue(ContactsContract.Data.MIMETYPE,
+                    ContactsContract.CommonDataKinds.StructuredName.CONTENT_ITEM_TYPE)
+            .withValue(ContactsContract.CommonDataKinds.StructuredName.DISPLAY_NAME,
+                    DUMMY_CONTACT_NAME);
+    operations.add(op.build());
+
+    // Apply the operations.
+    ContentResolver resolver = getContentResolver();
+    try {
+        resolver.applyBatch(ContactsContract.AUTHORITY, operations);
+    } catch (RemoteException e) {
+        Log.d(TAG, "Could not add a new contact: " + e.getMessage());
+    } catch (OperationApplicationException e) {
+        Log.d(TAG, "Could not add a new contact: " + e.getMessage());
+    }
+}
+```
+
+
+# 简化权限处理流程
+
+如果每次处理运行时权限都要写辣么一堆代码，估计我们也要被累死了～～，所以也用相应的开源库来简化运行时权限的处理。试用了很多，目前感觉最好用
+的是PermissionsDispatcher，该库试用使用注解的方式，动态生成类处理运行时权限，下面介绍一个它的试用流程。
+
+PermissionsDispatcher: https://github.com/hotchemi/PermissionsDispatcher
+
+![](/android-new-feature/PermissionsDispatcher.png)
+
+### 1 安装插件
+
+AndroidStudio安装插件PermissionsDispatcher
+
+### 2 添加依赖
+
+>注：当前的${latest.version}是2.2.0
+
+For Android Gradle Plugin >= 2.2 users
+
+To add it to your project, include the following in your app module build.gradle file:
+
+```
+dependencies {
+  compile 'com.github.hotchemi:permissionsdispatcher:${latest.version}'
+  annotationProcessor 'com.github.hotchemi:permissionsdispatcher-processor:${latest.version}'
+}
+```
+
+For Android Gradle Plugin < 2.2 users
+
+To add it to your project, include the following in your project build.gradle file:
+
+```
+buildscript {
+  dependencies {
+    classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+  }
+}
+```
+
+And on your app module build.gradle:
+
+```
+apply plugin: 'android-apt'
+
+dependencies {
+  compile 'com.github.hotchemi:permissionsdispatcher:${latest.version}'
+  apt 'com.github.hotchemi:permissionsdispatcher-processor:${latest.version}'
+}
+```
+
+
+### 3 右键点击生成运行时权限代码
+
+![](/android-new-feature/AndroidAnnotationsPermissionsDispatcherPlugin.png)
+
+填写好方法名后生成的方法会带有以下4个注解：
+
+|Annotation|Required|Description|
+|---|---|---|
+|`@RuntimePermissions`|**✓**|Register an `Activity` or `Fragment` to handle permissions|
+|`@NeedsPermission`|**✓**|Annotate a method which performs the action that requires one or more permissions|
+|`@OnShowRationale`||Annotate a method which explains why the permission/s is/are needed. It passes in a `PermissionRequest` object which can be used to continue or abort the current permission request upon user input|
+|`@OnPermissionDenied`||Annotate a method which is invoked if the user doesn't grant the permissions|
+|`@OnNeverAskAgain`||Annotate a method which is invoked if the user chose to have the device "never ask again" about a permission|
+
+
+```java
+
+```
 
