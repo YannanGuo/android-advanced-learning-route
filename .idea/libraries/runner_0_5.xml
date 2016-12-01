@@ -3,7 +3,6 @@
     <ANNOTATIONS>
       <root url="jar://$PROJECT_DIR$/android-framework/build/intermediates/exploded-aar/com.android.support.test/runner/0.5/annotations.zip!/" />
       <root url="jar://$PROJECT_DIR$/android-new-feature/build/intermediates/exploded-aar/com.android.support.test/runner/0.5/annotations.zip!/" />
-      <root url="jar://$PROJECT_DIR$/android-system/build/intermediates/exploded-aar/com.android.support.test/runner/0.5/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
       <root url="file://$PROJECT_DIR$/android-framework/build/intermediates/exploded-aar/com.android.support.test/runner/0.5/res" />
