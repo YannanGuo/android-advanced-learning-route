@@ -1,5 +1,7 @@
 # Android进阶学习路线
 
+![](https://github.com/guoxiaoxing/android-advanced-learning-route/raw/master/art/Android进阶学习路线.png)
+
 作者: 郭孝星  
 邮箱: guoxiaoxingse@163.com  
 博客: https://guoxiaoxing.github.io/  
