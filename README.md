@@ -34,6 +34,10 @@
 - [Material Design 音乐播放器](https://github.com/guoxiaoxing/material-design-music-player)
 - [Material Design 视频播放器](https://github.com/guoxiaoxing/material-design-video-player)
 
+Android开发技术图谱
+
+![](https://github.com/guoxiaoxing/android-advanced-learning-route/raw/master/art/安卓开发技术图谱.png)
+
 # Android新特性
 
 - [Android新特性解析一：运行时权限](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/android-new-feature/doc/Android新特性解析一：运行时权限.md)
