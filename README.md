@@ -36,7 +36,7 @@
 
 Android开发技术图谱
 
-![](https://github.com/guoxiaoxing/android-advanced-learning-route/blob/master/art/%E5%AE%89%E5%8D%93%E5%BC%80%E5%8F%91%E6%8A%80%E6%9C%AF%E5%9B%BE%E8%B0%B1%20.png)
+![](https://github.com/guoxiaoxing/android-advanced-learning-route/raw/master/art/android-develop-skill-map.png)
 
 # Android新特性
 
