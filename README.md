@@ -23,7 +23,7 @@
 
 1. 深入理解Android新特性
 2. 深入理解Android框架原理
-2. 深入理解Android系统原理
+3. 深入理解Android系统原理
 
 写在前面:
 
