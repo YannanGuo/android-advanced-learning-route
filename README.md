@@ -58,11 +58,11 @@ Android开发技术图谱
 
 目前已经分离的内容有:
 
-- [Android应用架构](https://github.com/YannanGuo/android-app-architecture)
-- [Android网络编程](https://github.com/YannanGuo/android-network-programming)
-- [Android异步编程](https://github.com/YannanGuo/android-asynchronous-programming)
-- [Android崩溃处理](https://github.com/YannanGuo/android-app-crash-handler)
-- [Android混合编程](https://github.com/YannanGuo/android-hybird-app)
+- [Android应用架构](https://github.com/guoxiaoxing/android-app-architecture)
+- [Android网络编程](https://github.com/guoxiaoxing/android-network-programming)
+- [Android异步编程](https://github.com/guoxiaoxing/android-asynchronous-programming)
+- [Android崩溃处理](https://github.com/guoxiaoxing/android-app-crash-handler)
+- [Android混合编程](https://github.com/guoxiaoxing/android-hybird-app)
 
 #三 Android系统原理
 
