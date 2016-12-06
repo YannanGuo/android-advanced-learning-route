@@ -53,11 +53,14 @@ Android开发技术图谱
 - Android跨进程通信原理
 - Android平台构建Web应用
 - Android性能优化实践
+- 资源加载机制与资源管理系统
+
 
 >另外，有些内容例如: 网络请求、异步实现等)需要更多详尽的讨论与分析, 这些内容会单独的分离开来。
 
 目前已经分离的内容有:
 
+- [Android应用测试]()
 - [Android应用架构](https://github.com/guoxiaoxing/android-app-architecture)
 - [Android网络编程](https://github.com/guoxiaoxing/android-network-programming)
 - [Android异步编程](https://github.com/guoxiaoxing/android-asynchronous-programming)
