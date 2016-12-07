@@ -1,4 +1,4 @@
-#自定义View的方法与技巧
+# View工作原理分析三：自定义View
 
 # Android进阶学习路线
 
