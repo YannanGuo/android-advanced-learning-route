@@ -52,8 +52,10 @@ public boolean onTouchEvent(MotionEvent event)
 1 dispatchTouchEvent(MotionEvent ev)首先进行事件的分发
 如果事件能够传递到当前View，那么该方法一定会被调用，返回值受当前View的onTouchEvent()和下级View的dispatchTouchEvent()影响，表示是否
 消耗当前事件。返回true表示消耗，返回false表示不消耗。
+
 2 onInterceptTouchEvent(MotionEvent ev)在dispatchTouchEvent(MotionEvent ev)方法内部调用，用来判断是否拦截某个事件，如果当前View
 拦截了某个事件，那么在同一个事件序列中，此方法不会再被调用，返回值表示时候拦截某个事件，返回true表示拦截，返回false表示不拦截。
+
 3 onTouchEvent(MotionEvent event)也在onInterceptTouchEvent(MotionEvent ev)方法内部被调用，用来处理点击事件，返回值表示是否消耗当
 前事件，返回true表示消耗，返回false表示不消耗。如果不消耗，则在同一个事件序列中，当前View无法再次接收到该事件。
 
@@ -78,7 +80,9 @@ public boolean dispatchTouchEvent(MotionEvent ev){
 下面我们再说几个关于事件分发与处理相关的结论。
 
 1 正常情况下，一个事件序列只能被一个View拦截消耗。
+
 2 ViewGroup默认不拦截任何事件。
+
 3 VIew的onTouchEvent()方法默认会消耗事件（返回true），除非它是不可点击的（clickable和longclickable同时为false，另外enable属性并不影响onTouchEvent()）
 的返回值，哪怕一个enable为false，只要clickable与longclickable有一个为true，onTouchEvent()就返回true。）。
 
