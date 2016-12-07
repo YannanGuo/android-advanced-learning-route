@@ -17,12 +17,13 @@
 
 View是Android所有控件的基类，我们先看一下整个View体系：
 
-![]()
+![](https://github.com/guoxiaoxing/android-advanced-learning-route/raw/master/android-framework/doc/View工作原理分析/art/view-system.png)
 
 # View坐标
 
 提到View的基本属性，我们先来看一下View坐标系，Android坐标系是一个三维坐标，Z轴向上，X轴向右，Y轴向下。这样讲比较抽象，我们先来看一张图：
 
+![](https://github.com/guoxiaoxing/android-advanced-learning-route/raw/master/android-framework/doc/View工作原理分析/art/view-coordinate.png)
 
 相信通过上面的图形描述，大家对View中各种坐标的概念已经比较明白了，下面简单的再说一下View类中各种方法的含义。
 
