@@ -84,3 +84,4 @@ public boolean dispatchTouchEvent(MotionEvent ev){
 
 >注意：View是否为clickable是分情况的，比方说Button的clickable＝true，TextView的clickable=false。但是TextView也可以设置点击监听，那是因为TextView.setOnClickListener()
 方法里会调用setClickable(true)。 
+
